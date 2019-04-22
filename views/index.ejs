@@ -1,1 +1,13 @@
 <h1>File Upload</h1>
+
+<form method="POST" action="/" enctype="multipart/form-data">
+  <div>
+    <input type="file" name="myFile">
+  </div>
+  <input type="submit" value="Upload!" class="btn btn-success">
+</form>
+
+<% if(recentUpload) { %>
+  <h2>Most Recent Upload:</h2>
+  <img src="<%=recentUpload%>" alt="Recent Upload">
+<% } %>
