@@ -15,7 +15,11 @@ app.get('/', function(req, res) {
 
 app.post('/', upload.single('inputFile'), function(req, res) {
   cloudinary.uploader.upload(req.file.path, function(result) {
-    res.send(result);
+    var cloudID = result.public_id;
+    console.log(cloudID);
+    var image = "http://res.cloudinary.com/dhnwoivac/image/upload/c_fit,e_oil_paint:70,h_100,w_100/v1582003407/" + cloudID + ".png";
+    console.log(image);
+    res.render('image', { image: image });
   });
 });
 
