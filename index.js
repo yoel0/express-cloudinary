@@ -1,6 +1,8 @@
+require('dotenv').config();
 var express = require('express');
 var ejsLayouts = require('express-ejs-layouts');
 var multer = require('multer');
+var cloudinary = require('cloudinary');
 
 
 var app = express();
@@ -19,11 +21,14 @@ app.post('/', uploads.single('inputFile'), function(req, res) {
     console.log("POST Route hit ⚡️");
     
     // get input file from user
-    var file = req.file;
-    res.send(file);
+    var file = req.file.path;
+
+    // upload file to cloudinary
+    cloudinary.uploader.upload(file, function(result) {
+      res.send('result success!!')
+    })
 })
 
-// upload file to cloudinary
 // return a rendered page w/ cloudinary link to formatted image
 
 
