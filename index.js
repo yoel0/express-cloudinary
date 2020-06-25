@@ -25,11 +25,11 @@ app.post('/', uploads.single('inputFile'), function(req, res) {
 
     // upload file to cloudinary
     cloudinary.uploader.upload(file, function(result) {
-      res.send('result success!!')
+      // return a rendered page w/ cloudinary link to formatted image
+      var cloudID = result.public_id;
+      var cloudLink = `https://res.cloudinary.com/azseir/image/upload/e_grayscale,r_0/v1593119912/${cloudID}.png`;
+      res.render('result', { image: cloudLink });
     })
 })
-
-// return a rendered page w/ cloudinary link to formatted image
-
 
 app.listen(4000);
